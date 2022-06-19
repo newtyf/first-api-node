@@ -4,8 +4,9 @@ const cors = require('cors');
 const app = express();
 const dbConnect = require('./config/mongo')
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use(express.static("./storage"));
 
 const port = process.env.PORT || 3000;
 

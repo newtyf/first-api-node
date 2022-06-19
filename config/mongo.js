@@ -12,6 +12,7 @@ const dbConnect = () => {
         console.log('***** Connection established *****');
       } else {
         console.log('***** Connection error *****');
+        console.error(err)
       }
     })
 }
