@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete')
 
 const TracksSchema = new mongoose.Schema(
   {
@@ -12,7 +13,11 @@ const TracksSchema = new mongoose.Schema(
       type:String,
       validate: {
         validator: (req) => {
-          return true;
+          if (req.includes('https') || req.includes('http')) {
+            return true;
+          } else {
+            return false
+          }
         },
         message: "ERROR_URL",
       }
@@ -47,4 +52,5 @@ const TracksSchema = new mongoose.Schema(
   }
 )
 
+TracksSchema.plugin(mongooseDelete, {overrideMethods: 'all'});
 module.exports = mongoose.model("tracks", TracksSchema)
